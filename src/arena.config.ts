@@ -4,7 +4,7 @@ import { monitor } from "@colyseus/monitor";
 /**
  * Import your Room files
  */
-import { MyRoom } from "./rooms/MainSpace";
+import { MyRoom } from "./rooms/MainSpaceRoom";
 
 export default Arena({
     getId: () => "Your Colyseus App",
