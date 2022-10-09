@@ -7,6 +7,14 @@ export class OnJoinCommand extends Command<MainSpaceRoom, {
   name: string, 
 }> {
   execute({ sessionId, name } = this.payload) {
-    this.state.players.set(sessionId, new PlayerState(name))
+    this.state.players.set(sessionId, new PlayerState(name));
+  }
+}
+
+export class OnLeaveCommand extends Command<MainSpaceRoom, { 
+  sessionId: string,
+}> {
+  execute({ sessionId } = this.payload) {
+    this.state.players.delete(sessionId);
   }
 }
