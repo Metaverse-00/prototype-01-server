@@ -18,7 +18,7 @@ export class MainSpaceRoom extends Room<MainSpaceState> {
 
   }
 
-  onJoin (client: Client, options: any) {
+  onJoin (client: Client, options: any) { // manage number of players and repsond with A,B,C coordinates
     console.log(client.sessionId, "joined!");
 
     this.dispatcher.dispatch(new OnJoinCommand(), {
