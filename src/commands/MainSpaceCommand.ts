@@ -32,7 +32,7 @@ export class OnJoinCommand extends Command<MainSpaceRoom, {
         break;
     }
     this.state.players.set(sessionId, new PlayerState(name, position, rotation));
-    this.state.camera = new CameraState(alpha, position);
+    this.state.cameras.set(sessionId, new CameraState(alpha, position));
   }
 }
 

@@ -6,6 +6,6 @@ export class MainSpaceState extends Schema {
 
   @type({ map: PlayerState }) players = new MapSchema<PlayerState>();
 
-  @type(CameraState) camera: CameraState;
+  @type({ map: CameraState }) cameras = new MapSchema<CameraState>;
 
 }
