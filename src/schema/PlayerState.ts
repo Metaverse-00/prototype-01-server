@@ -9,9 +9,15 @@ export class PlayerState extends Schema {
 
   @type("number") rotation: number;
 
-  constructor(_name: string) {
+  constructor(
+    _name: string,
+    _position: PositionState,
+    _rotation: number
+  ) {
     super();
     this.name = _name;
+    this.position = _position;
+    this.rotation = _rotation;
   }
 
 }
