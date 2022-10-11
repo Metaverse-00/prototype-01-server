@@ -14,7 +14,6 @@ export class OnKeyInputCommand extends Command<MainSpaceRoom, {
   }
 }> {
   execute({ sessionId, data } = this.payload) {
-    console.log(data)
     const { keyInput } = this.state.players.get(sessionId);
     keyInput.w = data.w;
     keyInput.s = data.s;
