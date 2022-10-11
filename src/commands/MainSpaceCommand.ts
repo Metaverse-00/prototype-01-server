@@ -4,9 +4,28 @@ import { CameraState } from "../schema/CameraState";
 import { PlayerState } from "../schema/PlayerState";
 import { PositionState } from "../schema/PositionState";
 
-export class OnJoinCommand extends Command<MainSpaceRoom, { 
+export class OnKeyInputCommand extends Command<MainSpaceRoom, {
   sessionId: string,
-  name: string, 
+  data: {
+    w: boolean,
+    a: boolean,
+    s: boolean,
+    d: boolean,
+  }
+}> {
+  execute({ sessionId, data } = this.payload) {
+    console.log(data)
+    const { keyInput } = this.state.players.get(sessionId);
+    keyInput.w = data.w;
+    keyInput.s = data.s;
+    keyInput.a = data.a;
+    keyInput.d = data.d;
+  }
+}
+
+export class OnJoinCommand extends Command<MainSpaceRoom, {
+  sessionId: string,
+  name: string,
 }> {
   execute({ sessionId, name } = this.payload) {
     const playerCount = this.state.players.size;
@@ -36,7 +55,7 @@ export class OnJoinCommand extends Command<MainSpaceRoom, {
   }
 }
 
-export class OnLeaveCommand extends Command<MainSpaceRoom, { 
+export class OnLeaveCommand extends Command<MainSpaceRoom, {
   sessionId: string,
 }> {
   execute({ sessionId } = this.payload) {
