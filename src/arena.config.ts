@@ -1,5 +1,7 @@
 import Arena from "@colyseus/arena";
 import { monitor } from "@colyseus/monitor";
+import express from 'express';
+import cors from 'cors';
 
 /**
  * Import your Room files
@@ -18,6 +20,8 @@ export default Arena({
     },
 
     initializeExpress: (app) => {
+        app.use(cors());
+        app.use(express.json());
         /**
          * Bind your custom express routes here:
          */
