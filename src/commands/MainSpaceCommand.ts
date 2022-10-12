@@ -28,7 +28,7 @@ export class OnJoinCommand extends Command<MainSpaceRoom, {
   name: string,
 }> {
   execute({ sessionId, name } = this.payload) {
-    let { A, B, C } = this.state.labels;
+    const { A, B, C } = this.state.labels;
     let position: PositionState;
     let rotation: number;
     let alpha: number;
@@ -62,7 +62,21 @@ export class OnLeaveCommand extends Command<MainSpaceRoom, {
   sessionId: string,
 }> {
   execute({ sessionId } = this.payload) {
+    const { A, B, C } = this.state.labels;
+
+    switch (sessionId) {
+      case A:
+        this.state.labels.A = "";
+        break;
+      case B:
+        this.state.labels.B = "";
+        break;
+      case C:
+        this.state.labels.C = "";
+        break;
+    }
     this.state.players.delete(sessionId);
+    this.state.cameras.delete(sessionId);
   }
 }
 
