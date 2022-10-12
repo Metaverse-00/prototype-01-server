@@ -1,7 +1,12 @@
 import { Room, Client } from "colyseus";
 import { Dispatcher } from "@colyseus/command";
 import { MainSpaceState } from "../schema/MainSpaceState";
-import { OnJoinCommand, OnKeyInputCommand, OnLeaveCommand } from "../commands/MainSpaceCommand";
+import { 
+  CheckPlayerCountCommand, 
+  OnJoinCommand, 
+  OnKeyInputCommand, 
+  OnLeaveCommand 
+} from "../commands/MainSpaceCommand";
 
 export class MainSpaceRoom extends Room<MainSpaceState> {
 
@@ -19,12 +24,13 @@ export class MainSpaceRoom extends Room<MainSpaceState> {
   }
 
   onJoin (client: Client, options: any) {
-    console.log(client.sessionId, "joined!");
-
+    this.dispatcher.dispatch(new CheckPlayerCountCommand());
+    
     this.dispatcher.dispatch(new OnJoinCommand(), {
       sessionId: client.sessionId,
       name: options.name
     });
+    console.log(client.sessionId, "joined!");
   }
 
   onLeave (client: Client, consented: boolean) {

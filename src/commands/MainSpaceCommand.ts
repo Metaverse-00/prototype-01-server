@@ -3,6 +3,7 @@ import { MainSpaceRoom } from "../rooms/MainSpaceRoom";
 import { CameraState } from "../schema/CameraState";
 import { PlayerState } from "../schema/PlayerState";
 import { PositionState } from "../schema/PositionState";
+import { ServerError } from "colyseus";
 
 export class OnKeyInputCommand extends Command<MainSpaceRoom, {
   sessionId: string,
@@ -59,5 +60,16 @@ export class OnLeaveCommand extends Command<MainSpaceRoom, {
 }> {
   execute({ sessionId } = this.payload) {
     this.state.players.delete(sessionId);
+  }
+}
+
+export class CheckPlayerCountCommand extends Command<MainSpaceRoom> {
+  validate(): boolean {
+    const playerCount = this.state.players.size;
+    return playerCount === 3;
+  }
+
+  execute() {
+    throw new ServerError(403, "Game room is full!");
   }
 }
