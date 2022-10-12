@@ -8,4 +8,11 @@ export class LabelState extends Schema {
 
   @type("string") C: string;
 
+  constructor() {
+    super();
+    this.A = "";
+    this.B = "";
+    this.C = "";
+  }
+
 }
