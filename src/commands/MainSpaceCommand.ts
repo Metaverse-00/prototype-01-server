@@ -32,7 +32,8 @@ export class OnJoinCommand extends Command<MainSpaceRoom, {
     let position: PositionState;
     let rotation: number;
     let alpha: number;
-
+    
+    // assigns the first empty position
     switch ("") {
       case A:
         this.state.labels.A = sessionId;
