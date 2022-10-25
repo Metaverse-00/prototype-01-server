@@ -15,6 +15,7 @@ export class CameraState extends Schema {
     super();
     this.alpha = _alpha;
     this.beta = Math.PI * 0.4;
+    // this.beta = Math.PI * 0.45; mobile
     this.radius = 20;
     this.position = _position;
   }
